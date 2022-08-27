@@ -1,9 +1,14 @@
 # from django.db import models
 from django.contrib.auth.models import AbstractUser
-
+from django.db import models
+from job.models import Job
 
 class User(AbstractUser):
-    pass
+    schedule = models.CharField(max_length=255)
+    materials_watchlist = models.CharField(max_length=255)
+    phone_number = models.IntegerField()
+    jobs = models.ForeignKey(Job, on_delete=models.PROTECT)
+
     '''
     This is a custom version of the built in User class
     It contains all of the built in fields and functionality of the standard User
