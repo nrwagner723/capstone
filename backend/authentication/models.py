@@ -6,7 +6,7 @@ from job.models import Job
 class User(AbstractUser):
     schedule = models.CharField(max_length=255)
     materials_watchlist = models.CharField(max_length=255)
-    phone_number = models.IntegerField()
+    phone_number = models.IntegerField(default=1)
     jobs = models.ForeignKey(Job, on_delete=models.PROTECT)
 
     '''
