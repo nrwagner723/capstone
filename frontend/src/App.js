@@ -11,6 +11,7 @@ import AddCarPage from "./pages/AddCarPage/AddCarPage";
 // Component Imports
 import Navbar from "./components/NavBar/NavBar";
 import Footer from "./components/Footer/Footer";
+import Test from "./components/Test/Test";
 
 // Util Imports
 import PrivateRoute from "./utils/PrivateRoute";

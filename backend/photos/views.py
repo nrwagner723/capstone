@@ -1,11 +1,13 @@
 from django.shortcuts import get_object_or_404
-from rest_framework.decorators import api_view
+from rest_framework.permissions import IsAuthenticated, AllowAny
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework import status
 from .serializers import PhotoSerializer
 from .models import Photo
 
 @api_view(['GET', 'POST'])
+@permission_classes([IsAuthenticated])
 def photo_album(request):
     if request.method == 'GET':
         photos = Photo.objects.all()
@@ -18,6 +20,7 @@ def photo_album(request):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 @api_view(['GET', 'PUT', 'DELETE'])
+@permission_classes([IsAuthenticated])
 def photo_detail(request, pk):
     photo = get_object_or_404(Photo, pk=pk)
     if request.method == 'GET':
