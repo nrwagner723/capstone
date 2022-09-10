@@ -20,7 +20,7 @@ def user_info(request):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 @api_view(['GET', 'PUT', 'DELETE'])
-@permission_classes([IsAuthenticated])
+@permission_classes([AllowAny])
 def user_detail(request, pk):
     info = get_object_or_404(UserInfo, pk=pk)
     if request.method == 'GET':

@@ -22,7 +22,7 @@ class RegisterView(generics.CreateAPIView):
     serializer_class = RegistrationSerializer
 
 @api_view(['GET'])
-def user_info(request):
+def user_user_info(request):
     user = User.objects.all()
     serializer = UserSerializer(user, many=True)
     return Response(serializer.data)
