@@ -6,19 +6,18 @@ import useAuth from '../../hooks/useAuth';
 import useCustomForm from '../../hooks/useCustomForm';
 
 let initialValues = {
-    make: '',
-    model: '',
-    year: '',
+    schedule: '',
+    materials_watchlist: '',
 };
 
-const AddCarPage = () => {
+const AddUserInfo = () => {
     const [user, token] = useAuth();
     const navigate = useNavigate();
-    const [formData, handleInputChange, handleSubmit] = useCustomForm(initialValues, postNewCar);
+    const [formData, handleInputChange, handleSubmit] = useCustomForm(initialValues, postUserInfo);
 
-    async function postNewCar(){
+    async function postUserInfo(){
         try {
-            let response = await axios.post("http://127.0.0.1:8000/api/cars/", formData, {
+            let response = await axios.post("http://127.0.0.1:8000/user_info/", formData, {
                 headers: {
                     Authorization: 'Bearer ' + token
                 }
@@ -33,37 +32,28 @@ const AddCarPage = () => {
         <div className="container">
             <form className="form" onSubmit={handleSubmit}>
                 <label>
-                    Make:{" "}
+                    Schedule:{" "}
                     <input
                         type="text"
-                        name="make"
-                        value={formData.make}
+                        name="schedule"
+                        value={formData.schedule}
                         onChange={handleInputChange}
                     />    
                 </label>
                 <label>
-                    Model:{" "}
+                    Materials Watchlist:{" "}
                     <input
                         type="text"
-                        name="model"
-                        value={formData.model}
+                        name="materials_watchlist"
+                        value={formData.materials_watchlist}
                         onChange={handleInputChange}
                     />    
                 </label>
-                <label>
-                    Year:{" "}
-                    <input
-                        type="text"
-                        name="year"
-                        value={formData.year}
-                        onChange={handleInputChange}
-                    />    
-                </label>
-                <button>Add Car!</button>
+                <button>Done</button>
             </form>
         </div>
     );
 
 } 
 
-export default AddCarPage;
+export default AddUserInfo;
