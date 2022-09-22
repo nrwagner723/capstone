@@ -7,7 +7,7 @@ from .serializers import PhotoSerializer
 from .models import Photo
 
 @api_view(['GET', 'POST'])
-@permission_classes([AllowAny])
+@permission_classes([IsAuthenticated])
 def photo_album(request):
     if request.method == 'GET':
         photos = Photo.objects.all()

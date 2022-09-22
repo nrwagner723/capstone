@@ -4,6 +4,12 @@ ul {
   list-style-type: none;
 }
 
+.buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
 li {
   font-size: 1.25rem;
 }

@@ -1,7 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
-import { Link } from "react-router-dom";
 import axios from "axios";
 
 const HomePage = () => {
@@ -27,15 +26,7 @@ const HomePage = () => {
   }, [token]);
   return (
     <div className="container">
-      <h1>Home Page for {user.username}!</h1>
-      <Link to="/user_info">Update Your Information</Link>
-
-      {userInfo &&
-        userInfo.map((userInfo) => (
-          <p key={userInfo.id}>
-            {userInfo.schedule} {userInfo.materials_watchlist}
-          </p>
-        ))}
+      <h1>Welcome {user.username}</h1>
     </div>
   );
 };

@@ -14,6 +14,9 @@ import Footer from "./components/Footer/Footer";
 
 // Util Imports
 import PrivateRoute from "./utils/PrivateRoute";
+import JobsPage from "./pages/JobsPage/JobsPage";
+import MaterialsPage from "./pages/MaterialsPage/MaterialsPage";
+import PhotosPage from "./pages/PhotosPage/PhotosPage";
 
 function App() {
   return (
@@ -30,6 +33,10 @@ function App() {
         />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/jobs" element={<JobsPage />} />
+        <Route path="/materials" element={<MaterialsPage />} />
+        <Route path="/photos" element={<PhotosPage />} />
+
         <Route path="/user_info" element={<PrivateRoute><AddUserInfo /></PrivateRoute>} />
       </Routes>
       <Footer />

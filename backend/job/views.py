@@ -7,7 +7,7 @@ from .serializers import JobSerializer
 from .models import Job
 
 @api_view(['GET', 'POST'])
-@permission_classes([AllowAny])
+@permission_classes([IsAuthenticated])
 def jobs_list(request):
     if request.method == 'GET':
         jobs = Job.objects.all()
