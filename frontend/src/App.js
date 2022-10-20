@@ -6,7 +6,6 @@ import "./App.css";
 import HomePage from "./pages/HomePage/HomePage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
-import AddUserInfo from "./pages/AddUserInfo/AddUserInfo";
 
 // Component Imports
 import Navbar from "./components/NavBar/NavBar";
@@ -36,8 +35,6 @@ function App() {
         <Route path="/jobs" element={<JobsPage />} />
         <Route path="/materials" element={<MaterialsPage />} />
         <Route path="/photos" element={<PhotosPage />} />
-
-        <Route path="/user_info" element={<PrivateRoute><AddUserInfo /></PrivateRoute>} />
       </Routes>
       <Footer />
     </div>

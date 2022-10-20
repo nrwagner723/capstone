@@ -18,3 +18,36 @@ h3 {
 .date-event {
     padding: 0.5rem;
 }
+
+.fc .fc-button-primary:not(:disabled).fc-button-active {
+    background-color: transparent;
+    border: 2px solid rgb(188, 79, 39);
+    color: rgb(188, 79, 39);
+    font-size: 1rem;
+    font-family: inherit;
+    max-width: 100px;
+    padding: 0.5rem 0.5rem;
+    border-radius: 0;
+}
+
+.fc .fc-button-primary {
+    background-color: transparent;
+    border: 2px solid rgb(188, 79, 39);
+    color: rgb(188, 79, 39);
+    font-size: 1rem;
+    font-family: inherit;
+    max-width: 100px;
+    padding: 0.5rem 0.5rem;   
+    border-radius: 0;
+}
+
+.fc .fc-button-primary:disabled {
+    background-color: transparent;
+    border: 2px solid rgb(188, 79, 39);
+    color: rgb(188, 79, 39);
+    font-size: 1rem;
+    font-family: inherit;
+    max-width: 100px;
+    padding: 0.5rem 0.5rem;   
+    border-radius: 0;
+}
