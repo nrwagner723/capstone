@@ -6,8 +6,6 @@ import { useNavigate } from 'react-router-dom';
 import useCustomForm from '../../hooks/useCustomForm';
 
 let initialValues = {
-  schedule: '',
-  materials_watchlist: '',
   phone_number: '',
 };
 
@@ -52,25 +50,7 @@ const HomePage = () => {
       <div className="container">
         <h1>Welcome {user.username}</h1>
             <form className="form" onSubmit={handleSubmit}>
-                <label>
-                    Schedule:{" "}
-                    <input
-                        type="text"
-                        name="schedule"
-                        value={formData.schedule}
-                        onChange={handleInputChange}
-                    />    
-                </label>
-                <label>
-                    Materials Watchlist:{" "}
-                    <input
-                        type="text"
-                        name="materials_watchlist"
-                        value={formData.materials_watchlist}
-                        onChange={handleInputChange}
-                    />    
-                </label>
-                <label>
+                  <label>
                     Phone Number:{" "}
                     <input
                         type="text"

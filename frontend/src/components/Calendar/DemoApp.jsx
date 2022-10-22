@@ -54,7 +54,7 @@ export default class DemoApp extends React.Component {
           <h3>Instructions</h3>
           <ul className='ul'> 
             <li className='li'>Select dates and you will be prompted to create a new event</li>
-            <li className='li'>Drag, drop, and resize events</li>
+            <li className='li'>Drag and drop events</li>
             <li className='li'>Click an event to delete it</li>
           </ul>
         </div>
@@ -71,7 +71,7 @@ export default class DemoApp extends React.Component {
   }
 
   handleDateSelect = (selectInfo) => {
-    let title = prompt('Please enter a new title for your event')
+    let title = prompt('Please enter title & location of this new job')
     let calendarApi = selectInfo.view.calendar
 
     calendarApi.unselect() // clear date selection
