@@ -9,4 +9,5 @@ urlpatterns = [
     path('register/', RegisterView.as_view(), name='register'),
     path('user/', views.user_user_info),
     path('user/<int:pk>/', views.user_detail),
+    path('user/<int:pk>/jobs/', views.get_jobs)
 ]

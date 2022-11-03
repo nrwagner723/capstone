@@ -34,3 +34,4 @@ def user_detail(request, pk):
     elif request.method == 'DELETE':
         info.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+    

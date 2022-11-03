@@ -1,9 +1,9 @@
-import React from 'react'
-import FullCalendar, { formatDate } from '@fullcalendar/react'
-import dayGridPlugin from '@fullcalendar/daygrid'
-import timeGridPlugin from '@fullcalendar/timegrid'
-import interactionPlugin from '@fullcalendar/interaction'
-import { INITIAL_EVENTS, createEventId } from './event-utils'
+import React, { useEffect, useState } from 'react';
+import FullCalendar, { formatDate } from '@fullcalendar/react';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import timeGridPlugin from '@fullcalendar/timegrid';
+import interactionPlugin from '@fullcalendar/interaction';
+import { INITIAL_EVENTS, createEventId } from './event-utils';
 import './calendar.css';
 
 export default class DemoApp extends React.Component {
@@ -41,7 +41,8 @@ export default class DemoApp extends React.Component {
             eventChange={function(){}}
             eventRemove={function(){}}
             */
-          />
+          //  events={events}
+           />
         </div>
       </div>
     )
@@ -118,3 +119,4 @@ function renderSidebarEvent(event) {
     </li>
   )
 }
+

@@ -44,7 +44,6 @@ INSTALLED_APPS = [
     'photos',
     'job',
     'user_info',
-    'Event',
 ]
 
 MIDDLEWARE = [
