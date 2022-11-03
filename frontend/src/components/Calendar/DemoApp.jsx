@@ -52,12 +52,12 @@ export default class DemoApp extends React.Component {
     return (
       <div className='demo-app-sidebar'>
         <div className='demo-app-sidebar-section'>
-          <h3>Instructions</h3>
+          {/* <h3>Instructions</h3>
           <ul className='ul'> 
             <li className='li'>Select dates and you will be prompted to create a new event</li>
             <li className='li'>Drag and drop events</li>
             <li className='li'>Click an event to delete it</li>
-          </ul>
+          </ul> */}
         </div>
         <div className='demo-app-sidebar-section'>
         </div>
