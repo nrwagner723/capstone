@@ -7,7 +7,7 @@ from .serializers import PhotoSerializer
 from .models import Photo
 
 @api_view(['GET', 'POST'])
-@permission_classes([IsAuthenticated])
+@permission_classes([AllowAny])
 def photo_album(request):
     if request.method == 'GET':
         photos = Photo.objects.all()
@@ -20,7 +20,7 @@ def photo_album(request):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 @api_view(['GET', 'PUT', 'DELETE'])
-@permission_classes([IsAuthenticated])
+@permission_classes([AllowAny])
 def photo_detail(request, pk):
     photo = get_object_or_404(Photo, pk=pk)
     if request.method == 'GET':
