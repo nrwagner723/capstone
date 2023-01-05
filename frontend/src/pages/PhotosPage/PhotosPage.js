@@ -28,7 +28,7 @@ class PhotosPage extends Component {
         <div>
          <input 
             type='file'   
-            className='button' 
+            className='' 
             onChange={this.fileSelectedHandler}/>
          <button onClick={this.fileUploadHandler}>Upload</button>
         </div>

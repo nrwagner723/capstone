@@ -12,9 +12,9 @@ const DisplayEntries = (props) => {
           {props.parentEntries.map((entry) => {
             return (
               <tr>
-                <td>{entry.job}</td>
-                <td>{entry.startDate}</td>
-                <td>{entry.endDate}</td>
+                <td>{entry.title}</td>
+                <td>{entry.start}</td>
+                <td>{entry.end}</td>
               </tr>
             );
           })}

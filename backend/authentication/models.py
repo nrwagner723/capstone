@@ -2,11 +2,9 @@
 from email.policy import default
 from django.contrib.auth.models import AbstractUser
 from django.db import models
-from user_info.models import UserInfo
 
 
 class User(AbstractUser):
-    user_info = models.ForeignKey(UserInfo, on_delete=models.PROTECT, null=True)
     '''
     This is a custom version of the built in User class
     It contains all of the built in fields and functionality of the standard User

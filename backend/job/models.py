@@ -5,6 +5,6 @@ from authentication.models import User
 
 class Job(models.Model):
     title = models.CharField(max_length=255)
-    start = models.CharField(max_length=255)
-    end = models.CharField(max_length=255)
+    start = models.DateField()
+    end = models.DateField()
     user = models.ForeignKey(User, on_delete=models.PROTECT)

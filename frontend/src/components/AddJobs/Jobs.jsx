@@ -1,25 +1,29 @@
+import axios from 'axios';
 import React, { useState } from 'react';
+import useAuth from "../../hooks/useAuth";
 
 const Jobs = (props) => {
-    
+    const [user, token, getUserJobs] = useAuth();
     const [job, setJob] = useState('');
     const [startDate, setStartDate] = useState('');
     const [endDate, setEndDate] = useState('');
 
 
-    function handleSubmit(event) {
+    const handleSubmit = async(event) =>{
         event.preventDefault();
         let newEntry = {
-            job: job,
-            startDate: startDate,
-            endDate: endDate,
+            title: job,
+            start: startDate,
+            end: endDate,
+            user_id: user.id
         };
+        await axios.post('http://127.0.0.1:8000/jobs/', newEntry)
         console.log(newEntry);
-        props.addNewEntryProperty(newEntry);
+        props.getEntries();
     }
 
     return ( 
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={(e)=>{handleSubmit(e)}}>
             <div className='form-group'>
                 <label>Job Description & Location</label>
                 <textarea className='form-control' rows='4' value={job} onChange={(event) => setJob(event.target.value)}></textarea>

@@ -5,6 +5,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from .serializers import PhotoSerializer
 from .models import Photo
+from django.shortcuts import render
 
 @api_view(['GET', 'POST'])
 @permission_classes([AllowAny])
@@ -24,8 +25,11 @@ def photo_album(request):
 def photo_detail(request, pk):
     photo = get_object_or_404(Photo, pk=pk)
     if request.method == 'GET':
-        serializer = PhotoSerializer(photo)
-        return Response(serializer.data)
+        if photo is not None:
+            return render(request, 'photos/photo.html', {'photo': photo})
+        else:
+            serializer = PhotoSerializer(photo)
+            return Response(serializer.data)
     elif request.method == 'PUT':
         serializer = PhotoSerializer(photo, data=request.data)
         serializer.is_valid(raise_exception=True)
