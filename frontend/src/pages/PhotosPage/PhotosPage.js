@@ -26,6 +26,9 @@ class PhotosPage extends Component {
     render() {
     return ( 
         <div>
+        <input
+            type='text'
+            onChange={this.fileSelectedHandler}/>
          <input 
             type='file'   
             className='' 
