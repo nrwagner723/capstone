@@ -9,6 +9,7 @@ class PhotosPage extends Component {
     
     fileSelectedHandler = (event) => {
         this.setState({
+            // name: "test", 
             selectedFile: event.target.files[0]
         })
     }
@@ -26,9 +27,9 @@ class PhotosPage extends Component {
     render() {
     return ( 
         <div>
-        <input
+        {/* <input
             type='text'
-            onChange={this.fileSelectedHandler}/>
+            onChange={this.fileSelectedHandler}/> */}
          <input 
             type='file'   
             className='' 

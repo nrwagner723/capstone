@@ -1,13 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext} from 'react';
 import DemoApp from '../../components/Calendar/DemoApp';
 import DisplayEntries from './DisplayJobs';
 import Jobs from '../../components/AddJobs/Jobs';
 import './JobsPage.css';
 import axios from 'axios';
+import AuthContext from '../../context/AuthContext';
 
 const JobsPage = (props) => {
     
     const [entries, setEntries] = useState([])
+    const { user, getUserJobs } = useContext(AuthContext);
 
     const getEntries = async() => {
         await axios
@@ -27,12 +29,11 @@ const JobsPage = (props) => {
                 </div>
                 <div className='col-md-12'>
                     <div className='border-box'>
-                        {entries[0] && entries[2].title}
                         <DisplayEntries parentEntries={entries} />
                     </div>
                 </div>
             </div>
-            <DemoApp /> 
+            <DemoApp user={user} getUserJobs={getUserJobs}/> 
         </div>
      );
 }

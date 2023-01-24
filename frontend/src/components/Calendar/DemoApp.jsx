@@ -5,8 +5,10 @@ import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import { INITIAL_EVENTS, createEventId } from './event-utils';
 import './calendar.css';
+import axios from 'axios';
 
 export default class DemoApp extends React.Component {
+
 
   state = {
     weekendsVisible: true,
@@ -71,7 +73,7 @@ export default class DemoApp extends React.Component {
     )
   }
 
-  handleDateSelect = (selectInfo) => {
+  handleDateSelect = async(selectInfo) => {
     let title = prompt('Please enter title & location of this new job')
     let calendarApi = selectInfo.view.calendar
 
@@ -85,6 +87,14 @@ export default class DemoApp extends React.Component {
         end: selectInfo.endStr,
         allDay: selectInfo.allDay
       })
+      let newEntry = {
+        title: title,
+        start: selectInfo.startStr,
+        end: selectInfo.endStr,
+        user_id: this.props.user.id
+      };
+    await axios.post('http://127.0.0.1:8000/jobs/', newEntry).then( res => this.props.getEntries());
+    console.log(newEntry);
     }
   }
 
