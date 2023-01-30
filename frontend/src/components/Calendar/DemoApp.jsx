@@ -7,15 +7,28 @@ import { INITIAL_EVENTS, createEventId } from './event-utils';
 import './calendar.css';
 import axios from 'axios';
 
-export default class DemoApp extends React.Component {
+const Calendar = () => {
+  const [events, setEvents] = useState([]);
 
+  useEffect(() => {
+    const fetchEvents = async () => {
+      try {
+        let response = await axios.get("http://127.0.0.1:8000/jobs/")
+        setEvents(response.data);
+        console.log("EVENT DATA:", response.data)
+      } catch (error) {
+        console.log(error.message)
+      }
+    };
+    fetchEvents();
+  }, []);
 
   state = {
     weekendsVisible: true,
     currentEvents: []
   }
 
-  render() {
+  render(); {
     return (
       <div className='demo-app'>
         {this.renderSidebar()}
@@ -43,35 +56,35 @@ export default class DemoApp extends React.Component {
             eventChange={function(){}}
             eventRemove={function(){}}
             */
-          //  events={events}
+            events={events}
            />
         </div>
       </div>
     )
   }
 
-  renderSidebar() {
-    return (
-      <div className='demo-app-sidebar'>
-        <div className='demo-app-sidebar-section'>
-          {/* <h3>Instructions</h3>
-          <ul className='ul'> 
-            <li className='li'>Select dates and you will be prompted to create a new event</li>
-            <li className='li'>Drag and drop events</li>
-            <li className='li'>Click an event to delete it</li>
-          </ul> */}
-        </div>
-        <div className='demo-app-sidebar-section'>
-        </div>
-        <div className='demo-app-sidebar-section'>
-          <h3>All Events ({this.state.currentEvents.length})</h3>
-          <ul>
-            {this.state.currentEvents.map(renderSidebarEvent)}
-          </ul>
-        </div>
-      </div>
-    )
-  }
+  // renderSidebar(); {
+  //   return (
+  //     <div className='demo-app-sidebar'>
+  //       <div className='demo-app-sidebar-section'>
+  //         {/* <h3>Instructions</h3>
+  //         <ul className='ul'> 
+  //           <li className='li'>Select dates and you will be prompted to create a new event</li>
+  //           <li className='li'>Drag and drop events</li>
+  //           <li className='li'>Click an event to delete it</li>
+  //         </ul> */}
+  //       </div>
+  //       <div className='demo-app-sidebar-section'>
+  //       </div>
+  //       <div className='demo-app-sidebar-section'>
+  //         <h3>All Events ({this.state.currentEvents.length})</h3>
+  //         <ul>
+  //           {this.state.currentEvents.map(renderSidebarEvent)}
+  //         </ul>
+  //       </div>
+  //     </div>
+  //   )
+  // }
 
   handleDateSelect = async(selectInfo) => {
     let title = prompt('Please enter title & location of this new job')
