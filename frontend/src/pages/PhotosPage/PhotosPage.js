@@ -9,12 +9,11 @@ class PhotosPage extends Component {
     
     fileSelectedHandler = (event) => {
         this.setState({
-            // name: "test", 
             selectedFile: event.target.files[0]
-        })
+        });
     }
 
-    fileUploadHandler = async() => {
+    fileUploadHandler = async(event) => {
         const fd = new FormData();
         fd.append('image', this.state.selectedFile, this.state.selectedFile.name);
         await axios.post('http://127.0.0.1:8000/photos/', fd).then(
@@ -22,14 +21,12 @@ class PhotosPage extends Component {
                 console.log(res);
             }
         );
+        console.log(fd)
     }
 
     render() {
     return ( 
         <div>
-        {/* <input
-            type='text'
-            onChange={this.fileSelectedHandler}/> */}
          <input 
             type='file'   
             className='' 
