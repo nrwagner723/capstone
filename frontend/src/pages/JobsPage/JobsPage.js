@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext} from 'react';
-import DemoApp from '../../components/Calendar/DemoApp';
+import Calendar from '../../components/Calendar/Calendar';
 import DisplayEntries from './DisplayJobs';
 import Jobs from '../../components/AddJobs/Jobs';
 import './JobsPage.css';
@@ -33,7 +33,7 @@ const JobsPage = (props) => {
                     </div>
                 </div>
             </div>
-            <DemoApp user={user} getUserJobs={getUserJobs}/> 
+            <Calendar entries={entries}/> 
         </div>
      );
 }
