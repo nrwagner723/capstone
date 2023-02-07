@@ -4,6 +4,7 @@ import useAuth from "../../hooks/useAuth";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 import useCustomForm from '../../hooks/useCustomForm';
+import DisplayPosts from "../../components/DisplayPosts/DisplayPosts";
 
 
 let initialValues = {
@@ -1002,6 +1003,7 @@ const HomePage = () => {
   const navigate = useNavigate();
   const [formData, handleInputChange, handleSubmit] = useCustomForm(initialValues, postUserInfo);
   const [productTotal, setProductTotal] = useState(0)
+  const [posts, setPosts] = useState([]);
 
   const productsSummarizer = () => {
     const sum = products.reduce(
@@ -1009,6 +1011,19 @@ const HomePage = () => {
     )
     setProductTotal(sum);
   }
+
+  // 
+  
+  useEffect(() => {
+    getAllPosts();
+  }, [])
+
+  async function getAllPosts(){
+    const response = await axios.get('http://127.0.0.1:8000/photos/');
+    setPosts(response.data)
+  }
+
+  //
 
   useEffect(() => {
     const fetchUserInfo = async () => {
@@ -1047,6 +1062,7 @@ const HomePage = () => {
         <p>{products[0].price + products[1].price}</p>
         <button onClick={ () => {productsSummarizer()}}>Click for total</button>
         <p>{productTotal}</p>
+        <DisplayPosts posts={posts}/>
       </div>
   );
 };
