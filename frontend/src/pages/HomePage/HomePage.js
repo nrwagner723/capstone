@@ -1010,15 +1010,6 @@ const HomePage = () => {
     )
     setProductTotal(sum);
   } 
-  
-//   useEffect(() => {
-//     getAllPosts();
-//   }, [])
-
-//   async function getAllPosts(){
-//     const response = await axios.get('http://127.0.0.1:8000/photos/');
-//     setPosts(response.data)
-//   }
 
   useEffect(() => {
     const fetchUserInfo = async () => {
@@ -1057,7 +1048,6 @@ const HomePage = () => {
         <p>{products[0].price + products[1].price}</p>
         <button onClick={ () => {productsSummarizer()}}>Click for total</button>
         <p>{productTotal}</p> 
-        {/* <DisplayPosts posts={posts}/> */}
       </div>
   );
 };

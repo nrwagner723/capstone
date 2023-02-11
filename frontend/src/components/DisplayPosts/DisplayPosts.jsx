@@ -1,3 +1,5 @@
+import "./DisplayPosts.css";
+
 const DisplayPosts = (props) => {
     return (
         <div className='card-container'>

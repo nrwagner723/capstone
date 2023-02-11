@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./Photos.css";
 import DisplayPosts from "../../components/DisplayPosts/DisplayPosts";
 
-// class PhotosPage extends Component {
 const PhotosPage = () => {
   const [selectedFile, setSelectedFile] = useState();
   const [posts, setPosts] = useState([{
@@ -32,13 +31,14 @@ const PhotosPage = () => {
 
   return (
     <div>
+      <p>Choose the photo you want to upload then click the Get Posts button to see all photos</p>
       <input
         type="file"
         className=""
         onChange={(event) => fileSelectedHandler(event)}
       />
-      <button onClick={(event) => fileUploadHandler(event)}>Upload</button>
-      <button onClick={() => getAllPosts()}>Get posts</button>
+      <button className="button" onClick={(event) => fileUploadHandler(event)}>Upload</button>
+      <button className="button" onClick={() => getAllPosts()}>Get Posts</button>
       <DisplayPosts posts={posts}/>
     </div>
   );
