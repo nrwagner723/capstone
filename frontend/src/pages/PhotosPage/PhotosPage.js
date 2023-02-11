@@ -1,45 +1,47 @@
-import React, { Component } from 'react';
-import axios from 'axios';
-import './Photos.css'
+import React, { Component } from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import "./Photos.css";
+import DisplayPosts from "../../components/DisplayPosts/DisplayPosts";
 
-class PhotosPage extends Component {
-    state = {
-        selectedFile: null
-    }
-    
-    fileSelectedHandler = (event) => {
-        this.setState({
-            selectedFile: event.target.files[0]
-        });
-    }
+// class PhotosPage extends Component {
+const PhotosPage = () => {
+  const [selectedFile, setSelectedFile] = useState();
+  const [posts, setPosts] = useState([{
+    id: 1,
+    image: "/media/files/images/IMG_1405.jpeg"
+   }]);
 
-    fileUploadHandler = async(event) => {
-        const fd = new FormData();
-        fd.append('image', this.state.selectedFile, this.state.selectedFile.name);
-        await axios.post('http://127.0.0.1:8000/photos/', fd).then(
-            res => {
-                console.log(res);
-            }
-        );
-        console.log(fd)
-    }
+  async function getAllPosts() {
+    const response = await axios.get("http://127.0.0.1:8000/photos/");
+    setPosts(response.data);
+  }
 
-    render() {
-    return ( 
-        <div>
-         <input 
-            type='file'   
-            className='' 
-            onChange={this.fileSelectedHandler}/>
-         <button onClick={this.fileUploadHandler}>Upload</button>
-        </div>
-     );
-    } 
-}
+  const fileSelectedHandler = (event) => {
+    setSelectedFile(event.target.files[0]);
+  };
 
+  const fileUploadHandler = async (event) => {
+    const fd = new FormData();
+    fd.append("image", selectedFile, selectedFile.name);
+    console.log(fd);
+    await axios.post("http://127.0.0.1:8000/photos/", fd).then((res) => {
+      console.log(res);
+    });
+  };
 
+  return (
+    <div>
+      <input
+        type="file"
+        className=""
+        onChange={(event) => fileSelectedHandler(event)}
+      />
+      <button onClick={(event) => fileUploadHandler(event)}>Upload</button>
+      <button onClick={() => getAllPosts()}>Get posts</button>
+      <DisplayPosts posts={posts}/>
+    </div>
+  );
+};
 
-
-
- 
 export default PhotosPage;
