@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 const DisplayEntries = (props) => {
-  // have to refresh to see that job is deleted 
+
   function deleteJob(id){
     fetch(`http://127.0.0.1:8000/jobs/${id}/`,{
       method:'DELETE'
@@ -40,3 +40,5 @@ const DisplayEntries = (props) => {
 }
  
 export default DisplayEntries;
+
+//testing if git works
