@@ -31,7 +31,7 @@ const MaterialsPage = (props) => {
   };
 
   useEffect(() => {
-    if (search == '') {
+    if (search === '') {
       console.log('Search is empty')
     } else {
       fetchHomeDepotData();
@@ -43,8 +43,8 @@ const MaterialsPage = (props) => {
       <button onClick={(e) => handleSearch(e)}>Search for materials</button>
       {products && products.map(
         product => <p className="materials"> {product.title} <br></br>
-        Price: {product.price} <br></br>
-        Rating: {product.rating}
+        Price: ${product.price} <br></br>
+        Rating: {product.rating}/5
         <a href={product.link} target="_blank">Link to Product's full page</a> </p>
       )}
     </div>

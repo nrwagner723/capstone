@@ -1,4 +1,5 @@
-import React, { useEffect, useState, useContext} from 'react';
+import React, { useEffect, useState } from 'react';
+// import React, { useEffect, useState, useContext} from 'react';
 import Calendar from '../../components/Calendar/Calendar';
 import DisplayEntries from './DisplayJobs';
 import Jobs from '../../components/AddJobs/Jobs';
@@ -9,7 +10,7 @@ import AuthContext from '../../context/AuthContext';
 const JobsPage = (props) => {
     
     const [entries, setEntries] = useState([])
-    const { user, getUserJobs } = useContext(AuthContext);
+    // const { user, getUserJobs } = useContext(AuthContext);
 
     const getEntries = async() => {
         await axios
@@ -30,6 +31,7 @@ const JobsPage = (props) => {
                 <div className='col-md-12'>
                     <div className='border-box'>
                         <DisplayEntries parentEntries={entries} />
+                        <p>Refresh the page after clicking the Delete button</p>
                     </div>
                 </div>
             </div>

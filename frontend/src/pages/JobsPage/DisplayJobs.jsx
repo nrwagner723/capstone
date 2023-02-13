@@ -1,4 +1,16 @@
+import React, { useState, useEffect } from 'react';
+
 const DisplayEntries = (props) => {
+
+  function deleteJob(id){
+    fetch(`http://127.0.0.1:8000/jobs/${id}/`,{
+      method:'DELETE'
+    }).then((result) => {
+      result.json().then((res) => {
+      })
+    })
+  }
+
     return ( 
         <table className="table">
         <thead>
@@ -6,6 +18,7 @@ const DisplayEntries = (props) => {
             <th>Job</th>
             <th>Start Date</th>
             <th>End Date</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -15,7 +28,10 @@ const DisplayEntries = (props) => {
                 <td>{entry.title}</td>
                 <td>{entry.start}</td>
                 <td>{entry.end}</td>
-              </tr>
+                <td>
+                  <button onClick={() => deleteJob(entry.id)}>Delete</button>
+                </td>
+              </tr> 
             );
           })}
         </tbody>

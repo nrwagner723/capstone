@@ -30,3 +30,7 @@ h3 {
 .fc .fc-button-primary:disabled { 
     border-radius: 0;
 }
+
+a {
+    text-decoration: none;
+}

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from 'react';
 import axios from "axios";
 import { useState } from "react";
 import "./Photos.css";
@@ -38,7 +38,7 @@ const PhotosPage = () => {
       />
       <button className="button" onClick={(event) => fileUploadHandler(event)}>Upload</button>
       <button className="button" onClick={() => getAllPosts()}>Get Posts</button>
-      <p>Choose the photo you want to upload then click Upload and click the Get Posts button to see all photos</p>
+      <p>Choose the photo you want to upload then click Upload then the Get Posts button to see all photos</p>
       <DisplayPosts posts={posts}/>
     </div>
   );
