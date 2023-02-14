@@ -37,8 +37,8 @@ const PhotosPage = () => {
         onChange={(event) => fileSelectedHandler(event)}
       />
       <button className="button" onClick={(event) => fileUploadHandler(event)}>Upload</button>
-      <button className="button" onClick={() => getAllPosts()}>Get Posts</button>
-      <p>Choose the photo you want to upload then click Upload then the Get Posts button to see all photos</p>
+      <button className="button" onClick={() => getAllPosts()}>See Posts</button>
+      <p>Choose the photo you want to upload then click Upload then the See Posts button to see all photos</p>
       <DisplayPosts posts={posts}/>
     </div>
   );
