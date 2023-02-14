@@ -1,44 +1,66 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 const DisplayEntries = (props) => {
+  
+  useEffect(() => {
+    getEntries();
+  }, []);
 
-  function deleteJob(id){
-    fetch(`http://127.0.0.1:8000/jobs/${id}/`,{
-      method:'DELETE'
-    }).then((result) => {
-      result.json().then((res) => {
-      })
-    })
+  async function getEntries() {
+    const response = await axios.get("http://127.0.0.1:8000/jobs/");
+    props.setEntries(response.data);
   }
 
-    return ( 
-        <table className="table">
-        <thead>
-          <tr>
-            <th>Job</th>
-            <th>Start Date</th>
-            <th>End Date</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          {props.parentEntries.map((entry) => {
-            return (
-              <tr>
-                <td>{entry.title}</td>
-                <td>{entry.start}</td>
-                <td>{entry.end}</td>
-                <td>
-                  <button onClick={() => deleteJob(entry.id)}>Delete</button>
-                </td>
-              </tr> 
-            );
-          })}
-        </tbody>
-      </table>
-     );
-}
- 
-export default DisplayEntries;
+  async function deleteJob(id) {
+    await axios
+      .delete(`http://127.0.0.1:8000/jobs/${id}/`)
+      .then((result) => getEntries());
+  }
 
-//testing if git works
+  async function deleteAlert(id) {
+    let user_input = prompt(
+      "Are you sure you want to delete this job? (answer 'yes' or 'no')"
+    );
+    if (user_input === "yes") {
+      deleteJob(id);
+      getEntries();
+    }
+  }
+
+  const handleAlert = (event, id) => {
+    event.preventDefault();
+    deleteAlert(id);
+  };
+
+  return (
+    <table className="table">
+      <thead>
+        <tr>
+          <th>Job</th>
+          <th>Start Date</th>
+          <th>End Date</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {props.parentEntries.map((entry) => {
+          return (
+            <tr>
+              <td>{entry.title}</td>
+              <td>{entry.start}</td>
+              <td>{entry.end}</td>
+              <td>
+                <button onClick={(e) => handleAlert(e, entry.id)}>
+                  Delete
+                </button>
+              </td>
+            </tr>
+          );
+        })}
+      </tbody>
+    </table>
+  );
+};
+
+export default DisplayEntries;

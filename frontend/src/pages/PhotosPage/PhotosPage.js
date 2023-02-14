@@ -6,10 +6,7 @@ import DisplayPosts from "../../components/DisplayPosts/DisplayPosts";
 
 const PhotosPage = () => {
   const [selectedFile, setSelectedFile] = useState();
-  const [posts, setPosts] = useState([{
-    id: 1,
-    image: "/media/files/images/IMG_1405.jpeg"
-   }]);
+  const [posts, setPosts] = useState([{}]);
 
   async function getAllPosts() {
     const response = await axios.get("http://127.0.0.1:8000/photos/");
@@ -39,7 +36,7 @@ const PhotosPage = () => {
       <button className="button" onClick={(event) => fileUploadHandler(event)}>Upload</button>
       <button className="button" onClick={() => getAllPosts()}>See Posts</button>
       <p>Choose the photo you want to upload then click Upload then the See Posts button to see all photos</p>
-      <DisplayPosts posts={posts}/>
+      <DisplayPosts posts={posts} setPosts={setPosts}/>
     </div>
   );
 };
