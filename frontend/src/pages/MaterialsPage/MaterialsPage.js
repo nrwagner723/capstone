@@ -4,8 +4,8 @@ import axios from "axios";
 import "./MaterialsPage.css"
 
 const MaterialsPage = (props) => {
+  
   const [products, setProducts] = useState(null);
-
   const [search, setSearch] = useState("");
 
   const searchSetter = async () => {
@@ -31,12 +31,12 @@ const MaterialsPage = (props) => {
   };
 
   useEffect(() => {
-    if (search === '') {
-      console.log('Search is empty')
-    } else {
-      fetchHomeDepotData();
-    }
+    fetchHomeDepotData();
   }, [search]);
+
+  async function addMaterial() {
+    await axios.post("http://127.0.0.1:8000/user_info/")
+  }
 
   return (
     <div className="container">
@@ -45,7 +45,8 @@ const MaterialsPage = (props) => {
         product => <p className="materials"> {product.title} <br></br>
         Price: ${product.price} <br></br>
         Rating: {product.rating}/5
-        <a href={product.link} target="_blank">Link to Product's full page</a> </p>
+        <a href={product.link} target="_blank">Link to Product's full page</a>
+        <button onClick={(e) => addMaterial(e, product)}>Add product to my list</button> </p>
       )}
     </div>
   );

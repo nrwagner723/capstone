@@ -8,6 +8,14 @@
 .card_image {
     padding: 0.5rem 0.5rem;
     margin: 0.5rem 0.5rem;
-    width: 20%;
     object-fit: cover;
+    width: 80%;
+}
+
+.image_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 50%;
 }

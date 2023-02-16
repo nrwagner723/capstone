@@ -38,15 +38,12 @@ const DisplayPosts = (props) => {
     <div className="card-container">
       {props.posts.map((post) => {
         return (
-          <>
+          <div className="image_container">
             <img
               className="card_image"
-              src={`http://127.0.0.1:8000${post.image}`}
-            />
-            <button onClick={(e) => handleAlert(e, post.id)}>
-              Delete
-            </button>
-          </>
+              src={`http://127.0.0.1:8000${post.image}`}/>
+            <button className="delete" onClick={(e) => handleAlert(e, post.id)}>Delete</button>
+          </div>
         );
       })}
     </div>
