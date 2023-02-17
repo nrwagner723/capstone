@@ -43,6 +43,7 @@ const DisplayPosts = (props) => {
               className="card_image"
               src={`http://127.0.0.1:8000${post.image}`}/>
             <button className="delete" onClick={(e) => handleAlert(e, post.id)}>Delete</button>
+            <br/><br/><br/>
           </div>
         );
       })}

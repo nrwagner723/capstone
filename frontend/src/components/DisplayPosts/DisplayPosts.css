@@ -6,8 +6,8 @@
 }
 
 .card_image {
-    padding: 0.5rem 0.5rem;
-    margin: 0.5rem 0.5rem;
+    padding: 0.2rem 0.2rem;
+    margin: 0.2rem 0.2rem;
     object-fit: cover;
     width: 80%;
 }
@@ -17,5 +17,5 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    width: 50%;
+    width: 40%;
 }

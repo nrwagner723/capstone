@@ -32,7 +32,6 @@ const JobsPage = (props) => {
         <div className="col-md-12">
           <div className="border-box">
             <DisplayEntries parentEntries={entries}  setEntries={setEntries}/>
-            <p>Refresh the page after clicking the Delete button</p>
           </div>
         </div>
       </div>

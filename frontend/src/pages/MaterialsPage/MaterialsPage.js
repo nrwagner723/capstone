@@ -18,7 +18,6 @@ const MaterialsPage = (props) => {
         `https://serpapi.com/search.json?engine=home_depot&q=${search}&api_key=21fcb86339b27dffeece323cb3a4e89eda0ed6ebf45529189b4d6efc0f13c764`
       );
       setProducts(response.data.products);
-      console.log(search);
       console.log(response.data.products);
     } catch (error) {
       console.log(error.message);
@@ -40,13 +39,14 @@ const MaterialsPage = (props) => {
 
   return (
     <div className="container">
-      <button onClick={(e) => handleSearch(e)}>Search for materials</button>
+      <button className="search" onClick={(e) => handleSearch(e)}>Search for materials</button> <br/><br/><br/>
       {products && products.map(
-        product => <p className="materials"> {product.title} <br></br>
-        Price: ${product.price} <br></br>
-        Rating: {product.rating}/5
+        product => <p className="materials_card"> {product.title} <br></br>
+        Price: ${product.price} <br/>
+        Brand: {product.brand} <br/>
+        Rating: {product.rating}/5 <br/>
         <a href={product.link} target="_blank">Link to Product's full page</a>
-        <button onClick={(e) => addMaterial(e, product)}>Add product to my list</button> </p>
+        <button className="add_button" onClick={(e) => addMaterial(e, product.title, product.price, product.brand, product.rating, product.link)}>Add product to my list</button> </p>
       )}
     </div>
   );

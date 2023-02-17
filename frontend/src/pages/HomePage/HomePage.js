@@ -4,6 +4,7 @@ import useAuth from "../../hooks/useAuth";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 import useCustomForm from '../../hooks/useCustomForm';
+import "./HomePage.css";
 // import DisplayPosts from "../../components/DisplayPosts/DisplayPosts";
 
 let initialValues = {
@@ -1048,6 +1049,7 @@ const HomePage = () => {
         <p>{products[0].price + products[1].price}</p>
         <button onClick={ () => {productsSummarizer()}}>Click for total</button>
         <p>{productTotal}</p> 
+        <p className="quote">“Building is about getting around the obstacles that are presented to you.” – Jeremy Renner</p>
       </div>
   );
 };

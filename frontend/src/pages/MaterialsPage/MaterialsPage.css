@@ -1,3 +1,8 @@
+.search {
+    float: left;
+    margin-left: 0.5rem;
+}
+
 .materials {
     font-family: "Poppins", sans-serif;
     font-size: 1rem;
@@ -10,4 +15,18 @@
 a {
     color: rgb(188, 79, 39) !important;
     text-decoration: underline !important;
+}
+
+.materials_card {
+    margin: 0.5rem 0.5rem;
+    padding: 0.5rem 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-top: solid 1px rgb(188, 79, 39);
+    width: 50%;
+}
+
+.add_button {
+    margin-top: 0.5rem;
 }
