@@ -44,4 +44,3 @@ const PhotosPage = () => {
 };
 
 export default PhotosPage;
-// testing for git, because git push is not working again
