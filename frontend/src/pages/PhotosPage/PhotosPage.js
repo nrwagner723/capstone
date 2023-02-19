@@ -3,10 +3,12 @@ import axios from "axios";
 import { useState } from "react";
 import "./Photos.css";
 import DisplayPosts from "../../components/DisplayPosts/DisplayPosts";
+// import useAuth from "../../hooks/useAuth";
 
 const PhotosPage = () => {
   const [selectedFile, setSelectedFile] = useState();
   const [posts, setPosts] = useState([{}]);
+  // const [user, token] = useAuth();
 
   async function getAllPosts() {
     const response = await axios.get("http://127.0.0.1:8000/photos/");

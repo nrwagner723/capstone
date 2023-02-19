@@ -7,7 +7,7 @@ from .serializers import JobSerializer
 from .models import Job
 
 @api_view(['GET', 'POST'])
-@permission_classes([AllowAny])
+@permission_classes([IsAuthenticated])
 def jobs_list(request):
     if request.method == 'GET':
         jobs = Job.objects.all()
@@ -20,7 +20,7 @@ def jobs_list(request):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 @api_view(['GET', 'PUT', 'DELETE'])
-@permission_classes([AllowAny])
+@permission_classes([IsAuthenticated])
 def job_detail(request, pk):
     job = get_object_or_404(Job, pk=pk)
     if request.method == 'GET':

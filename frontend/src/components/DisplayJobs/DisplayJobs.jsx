@@ -1,20 +1,26 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import useAuth from "../../hooks/useAuth";
 
 const DisplayEntries = (props) => {
-  
+  const [user, token] = useAuth();
+
   useEffect(() => {
     getEntries();
   }, []);
 
   async function getEntries() {
-    const response = await axios.get("http://127.0.0.1:8000/jobs/");
+    const response = await axios.get("http://127.0.0.1:8000/jobs/", {
+      headers: { Authorization: "Bearer " + token },
+    });
     props.setEntries(response.data);
   }
 
   async function deleteJob(id) {
     await axios
-      .delete(`http://127.0.0.1:8000/jobs/${id}/`)
+      .delete(`http://127.0.0.1:8000/jobs/${id}/`, {
+        headers: { Authorization: "Bearer " + token },
+      })
       .then((result) => getEntries());
   }
 

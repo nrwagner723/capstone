@@ -1,5 +1,5 @@
 from django.db import models
-from authentication.models import User;
+from authentication.models import User
 from photos.models import Photo
 
 # Create your models here.
@@ -9,7 +9,8 @@ class UserInfo(models.Model):
     # materials_watchlist = models.CharField(max_length=255)
     # phone_number = models.CharField(max_length=11, null=True)
     # image = models.ImageField(upload_to='post_images')
-
+    
+    # user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=255)
     price = models.DecimalField(max_digits=64, decimal_places=2)
     brand = models.CharField(max_length=255)

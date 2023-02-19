@@ -1,12 +1,21 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";
-import "./MaterialsPage.css"
+import "./MaterialsPage.css";
+import "../../components/AddMaterials/AddMaterials";
+import AddMaterials from "../../components/AddMaterials/AddMaterials";
 
 const MaterialsPage = (props) => {
-  
   const [products, setProducts] = useState(null);
   const [search, setSearch] = useState("");
+  const [userMaterials, setUserMaterials] = useState([{}]);
+  const defaultValues = {
+    title: "",
+    price: "",
+    brand: "",
+    rating: "",
+    link: "",
+  };
 
   const searchSetter = async () => {
     setSearch(prompt("Search for a product:"));
@@ -34,20 +43,49 @@ const MaterialsPage = (props) => {
   }, [search]);
 
   async function addMaterial() {
-    await axios.post("http://127.0.0.1:8000/user_info/")
+    await axios.post("http://127.0.0.1:8000/user_info/");
   }
 
   return (
     <div className="container">
-      <button className="search" onClick={(e) => handleSearch(e)}>Search for materials</button> <br/><br/><br/>
-      {products && products.map(
-        product => <p className="materials_card"> {product.title} <br></br>
-        Price: ${product.price} <br/>
-        Brand: {product.brand} <br/>
-        Rating: {product.rating}/5 <br/>
-        <a href={product.link} target="_blank">Link to Product's full page</a>
-        <button className="add_button" onClick={(e) => addMaterial(e, product.title, product.price, product.brand, product.rating, product.link)}>Add product to my list</button> </p>
-      )}
+      <button className="search" onClick={(e) => handleSearch(e)}>
+        Search for materials
+      </button>{" "}
+      <br />
+      <br />
+      <br />
+      {products &&
+        products.map((product) => (
+          <p className="materials_card">
+            {" "}
+            {product.title} <br></br>
+            Price: ${product.price} <br />
+            Brand: {product.brand} <br />
+            Rating: {product.rating}/5 <br />
+            <a href={product.link} target="_blank">
+              Link to Product's full page
+            </a>
+            <button
+              className="add_button"
+              onClick={(e) =>
+                addMaterial(
+                  e,
+                  product.title,
+                  product.price,
+                  product.brand,
+                  product.rating,
+                  product.link
+                )
+              }
+            >
+              Add product to my list
+            </button>{" "}
+          </p>
+        ))}
+      <AddMaterials
+        userMaterials={userMaterials}
+        setUserMaterials={setUserMaterials}
+      />
     </div>
   );
 };

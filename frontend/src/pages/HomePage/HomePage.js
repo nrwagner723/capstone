@@ -998,7 +998,8 @@ const HomePage = () => {
 
   // The "user" value from this Hook contains the decoded logged in user information (username, first name, id)
   // The "token" value is the JWT token that you will send in the header of any request requiring authentication
-  const [user, token, getUserJobs] = useAuth();
+  // const [user, token, getUserJobs] = useAuth();
+  const [user, token] = useAuth();
   const [userInfo, setUserInfo] = useState([]);
   const navigate = useNavigate();
   const [formData, handleInputChange, handleSubmit] = useCustomForm(initialValues, postUserInfo);
@@ -1026,7 +1027,7 @@ const HomePage = () => {
       }
     };
     fetchUserInfo();
-    getUserJobs();
+    //getUserJobs();
   }, [token]);
 
   async function postUserInfo(){

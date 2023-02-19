@@ -69,6 +69,8 @@ const RegisterPage = () => {
           special characters!
         </p>
         <button>Register!</button>
+        <p style={{ fontSize: "12px" }}>
+          After you register, use your new username and password to login!</p>
       </form>
     </div>
   );

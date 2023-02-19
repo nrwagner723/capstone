@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "./DisplayPosts.css";
 import axios from "axios";
+// import useAuth from "../../hooks/useAuth";
 
 const DisplayPosts = (props) => {
-  
     useEffect(() => {
     getAllPosts();
   }, []);
@@ -35,7 +35,7 @@ const DisplayPosts = (props) => {
   };
 
   return (
-    <div className="card-container">
+    <div className="card_container">
       {props.posts.map((post) => {
         return (
           <div className="image_container">
