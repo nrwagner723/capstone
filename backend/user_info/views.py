@@ -8,7 +8,7 @@ from .serializers import UserInfoSerializer
 from .models import UserInfo
 
 @api_view(['GET', 'POST'])
-@permission_classes([AllowAny])
+@permission_classes([IsAuthenticated])
 def user_info(request):
     if request.method == 'GET':
         info = UserInfo.objects.all()
@@ -19,6 +19,7 @@ def user_info(request):
         serializer.is_valid(raise_exception=True)
         serializer.save(user=request.user)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
+    
 
 @api_view(['GET', 'PUT', 'DELETE'])
 @permission_classes([AllowAny])

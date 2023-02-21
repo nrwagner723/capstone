@@ -1,7 +1,7 @@
-.search {
+/* .search {
     float: left;
     margin-left: 0.5rem;
-}
+} */
 
 .materials {
     font-family: "Poppins", sans-serif;
@@ -24,9 +24,9 @@ a {
     flex-direction: column;
     align-items: center;
     border-top: solid 1px rgb(188, 79, 39);
-    width: 50%;
+    width: 100%;
 }
 
-.add_button {
+/* .add_button {
     margin-top: 0.5rem;
-}
+} */

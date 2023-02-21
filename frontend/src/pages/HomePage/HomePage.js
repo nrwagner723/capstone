@@ -1042,14 +1042,14 @@ const HomePage = () => {
         console.log(error.message)
     }
   }
-  console.log(products[0].price)
-  console.log(products[1].price)
+//   console.log(products[0].price)
+//   console.log(products[1].price)
   return (
       <div className="container">
         <h1>Welcome {user.username}!</h1>
-        <p>{products[0].price + products[1].price}</p>
+        {/* <p>{products[0].price + products[1].price}</p>
         <button onClick={ () => {productsSummarizer()}}>Click for total</button>
-        <p>{productTotal}</p> 
+        <p>{productTotal}</p>  */}
         <p className="quote">“Building is about getting around the obstacles that are presented to you.” – Jeremy Renner</p>
       </div>
   );

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useReducer } from "react";
 import axios from "axios";
 
 const AddMaterials = (props) => {
@@ -13,7 +13,7 @@ const AddMaterials = (props) => {
 
   async function deleteMaterial(id) {
     await axios
-      .delete(`http://127.0.0.1:8000/user_info/${id}`)
+      .delete(`http://127.0.0.1:8000/user_info/${id}/`)
       .then((result) => getAllMaterials());
   }
 
@@ -37,9 +37,9 @@ const AddMaterials = (props) => {
       {props.userMaterials.map((userMaterial) => {
         return (
           <div className="user_materials">
-            <p className="card_image">
-              {`http://127.0.0.1:8000${userMaterial.title}`}</p>
-            <button className="delete"
+            <p>{userMaterial.title}</p>
+            <button
+              className="delete"
               onClick={(e) => handleAlert(e, userMaterial.id)}>
               Delete
             </button>

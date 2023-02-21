@@ -4,18 +4,13 @@ import axios from "axios";
 import "./MaterialsPage.css";
 import "../../components/AddMaterials/AddMaterials";
 import AddMaterials from "../../components/AddMaterials/AddMaterials";
+import useAuth from "../../hooks/useAuth"
 
 const MaterialsPage = (props) => {
+  const [user, token] = useAuth()
   const [products, setProducts] = useState(null);
   const [search, setSearch] = useState("");
   const [userMaterials, setUserMaterials] = useState([{}]);
-  const defaultValues = {
-    title: "",
-    price: "",
-    brand: "",
-    rating: "",
-    link: "",
-  };
 
   const searchSetter = async () => {
     setSearch(prompt("Search for a product:"));
@@ -42,8 +37,9 @@ const MaterialsPage = (props) => {
     fetchHomeDepotData();
   }, [search]);
 
-  async function addMaterial() {
-    await axios.post("http://127.0.0.1:8000/user_info/");
+  async function addMaterial(e, product) {
+    console.log(product)
+    await axios.post("http://127.0.0.1:8000/user_info/", {product: product}, {headers:{Authorization:"Bearer " + token}});
   }
 
   return (
@@ -57,8 +53,7 @@ const MaterialsPage = (props) => {
       {products &&
         products.map((product) => (
           <p className="materials_card">
-            {" "}
-            {product.title} <br></br>
+            {product.title} <br />
             Price: ${product.price} <br />
             Brand: {product.brand} <br />
             Rating: {product.rating}/5 <br />
@@ -67,24 +62,13 @@ const MaterialsPage = (props) => {
             </a>
             <button
               className="add_button"
-              onClick={(e) =>
-                addMaterial(
-                  e,
-                  product.title,
-                  product.price,
-                  product.brand,
-                  product.rating,
-                  product.link
-                )
-              }
-            >
-              Add product to my list
-            </button>{" "}
+              onClick={(e) => addMaterial(e, product)}>
+              Add product to my list</button>
           </p>
         ))}
       <AddMaterials
-        userMaterials={userMaterials}
-        setUserMaterials={setUserMaterials}
+        userMaterials={products}
+        setUserMaterials={setProducts}
       />
     </div>
   );

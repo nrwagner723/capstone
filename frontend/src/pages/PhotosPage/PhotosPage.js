@@ -44,5 +44,3 @@ const PhotosPage = () => {
 };
 
 export default PhotosPage;
-
-// testing git
