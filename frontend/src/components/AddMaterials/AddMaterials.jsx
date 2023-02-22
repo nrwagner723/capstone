@@ -15,12 +15,13 @@ const AddMaterials = (props) => {
       headers: { Authorization: "Bearer " + token },
     });
     props.setUserMaterials(response.data);
-    console.log(userMaterials)
   }
 
   async function deleteMaterial(id) {
     await axios
-      .delete(`http://127.0.0.1:8000/user_info/${id}/`)
+      .delete(`http://127.0.0.1:8000/user_info/${id}/`, {
+        headers: { Authorization: "Bearer " + token },
+      })
       .then((result) => getAllMaterials());
   }
 
@@ -44,11 +45,14 @@ const AddMaterials = (props) => {
       {props.userMaterials.map((userMaterial) => {
         return (
           <div className="user_materials">
-            <p>{userMaterial.title}
-            {userMaterial.price}</p>
+            <p>
+              {userMaterial.title} ${userMaterial.price} {userMaterial.id}
+            </p>
             <button
               className="delete"
-              onClick={(e) => handleAlert(e, userMaterial.id)}>
+              onClick={(e) => handleAlert(e, userMaterial.id)}
+            >
+              {console.log(userMaterial.id)}
               Delete
             </button>
           </div>

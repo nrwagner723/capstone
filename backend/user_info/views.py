@@ -11,7 +11,8 @@ from .models import UserInfo
 @permission_classes([IsAuthenticated])
 def user_info(request):
     if request.method == 'GET':
-        info = UserInfo.objects.all()
+        # info = UserInfo.objects.all()
+        info = UserInfo.objects.filter(user=request.user)
         serializer = UserInfoSerializer(info, many=True)
         return Response(serializer.data)
     # elif request.method == 'POST':
@@ -34,7 +35,7 @@ def add_material(request):
 @api_view(['GET', 'PUT', 'DELETE'])
 @permission_classes([IsAuthenticated])
 def user_detail(request, pk):
-    info = get_list_or_404(UserInfo, user_id=pk)
+    info = get_object_or_404(UserInfo, pk=pk)
     if request.method == 'GET':
         serializer = UserInfoSerializer(info, many=True)
         return Response(serializer.data)
