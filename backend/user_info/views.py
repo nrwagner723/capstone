@@ -7,22 +7,32 @@ from rest_framework import status
 from .serializers import UserInfoSerializer
 from .models import UserInfo
 
-@api_view(['GET', 'POST'])
-@permission_classes([AllowAny])
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def user_info(request):
     if request.method == 'GET':
         info = UserInfo.objects.all()
         serializer = UserInfoSerializer(info, many=True)
         return Response(serializer.data)
-    elif request.method == 'POST':
+    # elif request.method == 'POST':
+    #     serializer = UserInfoSerializer(data=request.data)
+    #     serializer.is_valid(raise_exception=True)
+    #     serializer.save(user=request.user)
+    #     return Response(serializer.data, status=status.HTTP_201_CREATED)
+    
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def add_material(request):
+    if request.method == 'POST':
+        request.data["user"] = request.user.id
         serializer = UserInfoSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save(user=request.user)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
-    
+
 
 @api_view(['GET', 'PUT', 'DELETE'])
-@permission_classes([AllowAny])
+@permission_classes([IsAuthenticated])
 def user_detail(request, pk):
     info = get_list_or_404(UserInfo, user_id=pk)
     if request.method == 'GET':

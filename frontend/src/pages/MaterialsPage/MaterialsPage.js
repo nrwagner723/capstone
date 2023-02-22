@@ -48,7 +48,7 @@ const MaterialsPage = (props) => {
 
   async function addMaterial(e, product) {
     console.log(product);
-    await axios.post("http://127.0.0.1:8000/user_info/", product, {
+    await axios.post("http://127.0.0.1:8000/user_info/add/", product, {
       headers: { Authorization: "Bearer " + token },
     });
   }
