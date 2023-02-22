@@ -8,7 +8,7 @@ from .serializers import UserInfoSerializer
 from .models import UserInfo
 
 @api_view(['GET', 'POST'])
-@permission_classes([IsAuthenticated])
+@permission_classes([AllowAny])
 def user_info(request):
     if request.method == 'GET':
         info = UserInfo.objects.all()

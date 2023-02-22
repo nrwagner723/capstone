@@ -4,7 +4,6 @@ from .models import Job
 class JobSerializer(serializers.ModelSerializer):
     class Meta:
         model = Job
-        fields = ['id', 'title', 'start', 'end', 'user_id']
-        depth = 1
+        fields = ['id', 'title', 'start', 'end']
     
-    # user_id = serializers.IntegerField(write_only=True)
+    # user = serializers.IntegerField(write_only=True)

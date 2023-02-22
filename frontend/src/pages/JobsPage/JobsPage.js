@@ -4,17 +4,15 @@ import DisplayEntries from "../../components/DisplayJobs/DisplayJobs";
 import Jobs from "../../components/AddJobs/Jobs";
 import "./JobsPage.css";
 import axios from "axios";
-import useAuth from "../../hooks/useAuth";
+// import useAuth from "../../hooks/useAuth";
 
 const JobsPage = (props) => {
   const [entries, setEntries] = useState([]);
-  const [user, token] = useAuth();
+  // const [user, token] = useAuth();
 
   const getEntries = async () => {
     await axios
-      .get("http://127.0.0.1:8000/jobs/", {
-        headers: { Authorization: "Bearer " + token },
-      })
+      .get("http://127.0.0.1:8000/jobs/")
       .then((res) => setEntries(res.data));
   };
 

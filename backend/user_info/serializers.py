@@ -4,5 +4,4 @@ from .models import UserInfo
 class UserInfoSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserInfo
-        fields = ['id', 'product', 'user']
-        depth = 1
+        fields = ['id', 'title', 'price', 'brand', 'rating', 'link', 'user']

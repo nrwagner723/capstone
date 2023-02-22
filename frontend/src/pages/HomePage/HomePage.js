@@ -5,7 +5,6 @@ import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 import useCustomForm from '../../hooks/useCustomForm';
 import "./HomePage.css";
-// import DisplayPosts from "../../components/DisplayPosts/DisplayPosts";
 
 let initialValues = {
   phone_number: '',
@@ -998,61 +997,70 @@ const HomePage = () => {
 
   // The "user" value from this Hook contains the decoded logged in user information (username, first name, id)
   // The "token" value is the JWT token that you will send in the header of any request requiring authentication
-  // const [user, token, getUserJobs] = useAuth();
+
   const [user, token] = useAuth();
   const [userInfo, setUserInfo] = useState([]);
   const navigate = useNavigate();
   const [formData, handleInputChange, handleSubmit] = useCustomForm(initialValues, postUserInfo);
+  const [email, setEmail] = useState();
+  //FOR MATERIALS PAGE
   const [productTotal, setProductTotal] = useState(0)
-  // const [posts, setPosts] = useState([]);
-
-  const productsSummarizer = () => {
-    const sum = products.reduce(
-      (acc, currectProduct) => acc + currectProduct.price, 0 
-    )
-    setProductTotal(sum);
-  } 
 
   useEffect(() => {
     const fetchUserInfo = async () => {
       try {
-        let response = await axios.get("http://127.0.0.1:8000/user_info/", {
-          headers: {
-            Authorization: "Bearer " + token,
-          },
-        });
+        let response = await axios.get("http://127.0.0.1:8000/user_info/");
         setUserInfo(response.data);
       } catch (error) {
         console.log(error.response.data);
       }
     };
     fetchUserInfo();
-    //getUserJobs();
   }, [token]);
 
   async function postUserInfo(){
     try {
-        let response = await axios.post("http://127.0.0.1:8000/user_info/", formData, {
-            headers: {
-                Authorization: 'Bearer ' + token
-            }
-        })
+        let response = await axios.post("http://127.0.0.1:8000/user_info/", formData)
         navigate("/")
     } catch (error) {
         console.log(error.message)
     }
   }
-//   console.log(products[0].price)
-//   console.log(products[1].price)
+
+  async function getEmail() {
+    let response = await axios.get(`http://127.0.0.1:8000/api/auth/user/${user.id}/`);
+    let user_email = response.data.email
+    console.log(user_email)
+    console.log(response.data)
+    setEmail(response.data.email)
+  }
+
+  getEmail()
+
   return (
       <div className="container">
         <h1>Welcome {user.username}!</h1>
-        {/* <p>{products[0].price + products[1].price}</p>
-        <button onClick={ () => {productsSummarizer()}}>Click for total</button>
-        <p>{productTotal}</p>  */}
+        <h1>{email}</h1>
         <p className="quote">“Building is about getting around the obstacles that are presented to you.” – Jeremy Renner</p>
       </div>
   );
 };
 
 export default HomePage;
+
+
+// for materials page:
+
+// const productsSummarizer = () => {
+//     const sum = products.reduce(
+//       (acc, currectProduct) => acc + currectProduct.price, 0 
+//     )
+//     setProductTotal(sum);
+//   } 
+
+//  console.log(products[0].price)
+//   console.log(products[1].price)
+
+    {/* <p>{products[0].price + products[1].price}</p>
+    <button onClick={ () => {productsSummarizer()}}>Click for total</button>
+    <p>{productTotal}</p>  */}

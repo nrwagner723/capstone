@@ -68,9 +68,12 @@ const RegisterPage = () => {
           NOTE: Make this an uncommon password with characters, numbers, and
           special characters!
         </p>
-        <button>Register!</button>
         <p style={{ fontSize: "12px" }}>
           After you register, use your new username and password to login!</p>
+        <button>Register!</button>
+        <br />
+        <br />
+        <br />
       </form>
     </div>
   );

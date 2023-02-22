@@ -5,4 +5,3 @@ class PhotoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Photo
         fields = ['id', 'image']
-        # fields = ['id', 'image', 'user_id']
