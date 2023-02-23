@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useReducer } from "react";
 import axios from "axios";
 import useAuth from "../../hooks/useAuth";
+import "./AddMaterials.css";
 
 const AddMaterials = (props) => {
   const [user, token] = useAuth();
@@ -44,20 +45,24 @@ const AddMaterials = (props) => {
     <div className="container">
       {props.userMaterials.map((userMaterial) => {
         return (
-          <div className="user_materials">
-            <p>
-              {userMaterial.title} ${userMaterial.price} {userMaterial.id}
-            </p>
-            <button
-              className="delete"
-              onClick={(e) => handleAlert(e, userMaterial.id)}
-            >
-              {console.log(userMaterial.id)}
-              Delete
-            </button>
+          <div className="user_materials_container">
+            <div className="user_materials">
+              <p>
+                {userMaterial.title} <br />${userMaterial.price} <br />
+                {userMaterial.rating}/5 <br />
+              </p>
+              <button
+                className="delete"
+                onClick={(e) => handleAlert(e, userMaterial.id)}>
+                Delete
+              </button>
+            </div>
           </div>
         );
       })}
+      <br />
+      <br />
+      <br />
     </div>
   );
 };

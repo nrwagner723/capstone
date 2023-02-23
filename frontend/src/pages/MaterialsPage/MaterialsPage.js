@@ -56,7 +56,7 @@ const MaterialsPage = (props) => {
   console.log(user)
 
   return (
-    <div className="container">
+    <div className="materials_container">
       <button className="search" onClick={(e) => handleSearch(e)}>
         Search for materials
         {console.log("Products array", products)}
@@ -66,7 +66,7 @@ const MaterialsPage = (props) => {
       <br />
       {products &&
         products.map((product, index) => (
-          <div key={index}>
+          <div className="under_search" key={index}>
             <p className="materials_card">
               {product.title} <br />
               Price: ${product.price} <br />
@@ -74,7 +74,7 @@ const MaterialsPage = (props) => {
               Rating: {product.rating}/5 <br />
               <a href={product.link} target="_blank">
                 Link to Product's full page
-              </a>
+              </a> <br />
               <button
                 className="add_button"
                 onClick={(e) => addMaterial(e, product)}>
