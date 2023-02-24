@@ -1,13 +1,16 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import emailjs from "@emailjs/browser";
 import axios from "axios";
 import useAuth from "../../hooks/useAuth";
 import "./EmailJS.css";
+import moment from 'moment';
 
 const EmailJS = () => {
   const [user, token] = useAuth();
   const [email, setEmail] = useState();
   const form = useRef();
+  const [job, setJob] = useState();
+  const [jobStart, setJobStart] = useState();
 
   const getJobs = async () => {
     let jobs = await axios.get("http://127.0.0.1:8000/jobs/");
@@ -18,17 +21,21 @@ const EmailJS = () => {
     }
 
     function returnStart(job) {
-      let jobs_start = job.start;
-      console.log("a job will start on " + jobs_start);
+      let job_start = job.start;
+      console.log("a job will start on " + job_start);
+      setJobStart(job_start);
     }
 
     start();
+
   };
+  
+  useEffect(() => {
+    getJobs();
+  }, []);
 
-  getJobs();
-
-  let currentDate = new Date().toJSON().slice(0, 10);
-  console.log("today is " + currentDate);
+  let currentDate = moment().format().slice(0, 10);
+  console.log("MOMENT " + currentDate)
 
   const sendEmail = (e) => {
     e.preventDefault();
@@ -58,7 +65,16 @@ const EmailJS = () => {
     setEmail(response.data.email);
   }
 
-  getEmail();
+  useEffect(() => {
+    getEmail();
+  }, []);
+
+  console.log(email);
+  console.log("job start "+jobStart);
+
+  // if (currentDate === jobStart){
+  //   console.log("worked")
+  // }
 
   return (
     <form ref={form} id="email_form" onSubmit={sendEmail}>
@@ -69,9 +85,7 @@ const EmailJS = () => {
         name="message"
         id="message"
         value={
-          "You have a job coming up tomorrow! Check your calendar in Contractor Tool for more information."
-        }
-      />
+          "You have a job coming up tomorrow! Check your calendar in Contractor Tool for more information."}/>
       <input
         className="reminder"
         type="submit"
