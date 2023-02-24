@@ -3,7 +3,7 @@ import emailjs from "@emailjs/browser";
 import axios from "axios";
 import useAuth from "../../hooks/useAuth";
 import "./EmailJS.css";
-import moment from 'moment';
+import moment from "moment";
 
 const EmailJS = () => {
   const [user, token] = useAuth();
@@ -22,40 +22,46 @@ const EmailJS = () => {
 
     function returnStart(job) {
       let job_start = job.start;
-      console.log("a job will start on " + job_start);
       setJobStart(job_start);
     }
 
     start();
-
   };
-  
+
   useEffect(() => {
     getJobs();
   }, []);
 
   let currentDate = moment().format().slice(0, 10);
-  console.log("MOMENT " + currentDate)
+  console.log("Today is " + currentDate);
 
+  let tomorrow = moment().add(1, 'day').format().slice(0, 10);
+  console.log("Tomorrow is " + tomorrow)
+
+  
   const sendEmail = (e) => {
     e.preventDefault();
-
-    emailjs
-      .sendForm(
-        "service_jm4h8uk",
-        "template_jmlcyen",
-        form.current,
-        "4_PZxdKefMjDhMbAy"
-      )
-      .then(
-        (result) => {
-          console.log(result.text);
-        },
-        (error) => {
-          console.log(error.text);
-        }
-      );
-  };
+    
+    if (tomorrow === jobStart) {
+      emailjs
+        .sendForm(
+          "service_jm4h8uk",
+          "template_jmlcyen",
+          form.current,
+          "4_PZxdKefMjDhMbAy"
+        )
+        .then(
+          (result) => {
+            console.log(result.text);
+          },
+          (error) => {
+            console.log(error.text);
+          }
+        );
+    } else {
+      alert("You don't have a job tomorrow")
+    }
+  }
 
   async function getEmail() {
     let response = await axios.get(
@@ -69,13 +75,6 @@ const EmailJS = () => {
     getEmail();
   }, []);
 
-  console.log(email);
-  console.log("job start "+jobStart);
-
-  // if (currentDate === jobStart){
-  //   console.log("worked")
-  // }
-
   return (
     <form ref={form} id="email_form" onSubmit={sendEmail}>
       <input type="hidden" name="to_name" id="name" value={user.first_name} />
@@ -85,7 +84,9 @@ const EmailJS = () => {
         name="message"
         id="message"
         value={
-          "You have a job coming up tomorrow! Check your calendar in Contractor Tool for more information."}/>
+          "You have a job coming up tomorrow! Check your calendar in Contractor Tool for more information."
+        }
+      />
       <input
         className="reminder"
         type="submit"
