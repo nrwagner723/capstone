@@ -6,6 +6,24 @@ import "./AddMaterials.css";
 const AddMaterials = (props) => {
   const [user, token] = useAuth();
   const [userMaterials, setUserMaterials] = useState([{}]);
+  const [productTotal, setProductTotal] = useState();
+  const priceArray = [];
+
+  const allPrices = () => {
+    props.userMaterials.map((userMaterial) => {
+      priceArray.push(userMaterial.price * 1);
+    });
+  };
+
+  allPrices();
+  console.log(priceArray);
+
+  const materialsPrice = () => {
+    const sum = priceArray.reduce(function (a, b) {
+      return a + b;
+    }, 0);
+    setProductTotal(sum);
+  };
 
   useEffect(() => {
     getAllMaterials();
@@ -43,19 +61,34 @@ const AddMaterials = (props) => {
 
   return (
     <div className="container">
+      <button
+        onClick={() => {
+          materialsPrice();
+        }}
+      >
+        Click for total
+      </button>
+      <p>Total Price: ${productTotal}</p>
       {props.userMaterials.map((userMaterial) => {
         return (
           <div className="user_materials_container">
             <div className="user_materials">
-              <p>
-                {userMaterial.title} <br />${userMaterial.price} <br />
-                {userMaterial.rating}/5 <br />
+              <p className="user_materials_card">
+                {userMaterial.title} <br />
+                Price: ${userMaterial.price} <br />
+                Brand: {userMaterial.brand} <br />
+                Rating: {userMaterial.rating}/5 <br />
+                <a href={userMaterial.link} target="_blank">
+                  Link to Product's full page
+                </a>{" "}
+                <br />
+                <button
+                  className="delete"
+                  onClick={(e) => handleAlert(e, userMaterial.id)}
+                >
+                  Delete
+                </button>
               </p>
-              <button
-                className="delete"
-                onClick={(e) => handleAlert(e, userMaterial.id)}>
-                Delete
-              </button>
             </div>
           </div>
         );

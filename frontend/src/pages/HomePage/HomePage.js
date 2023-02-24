@@ -11,7 +11,6 @@ let initialValues = {
 };
 
 const HomePage = () => {
-
   const [products, setProducts] = useState(
     [
     {
@@ -994,17 +993,11 @@ const HomePage = () => {
         }
     }
 ])
-
-  // The "user" value from this Hook contains the decoded logged in user information (username, first name, id)
-  // The "token" value is the JWT token that you will send in the header of any request requiring authentication
-
   const [user, token] = useAuth();
   const [userInfo, setUserInfo] = useState([]);
   const navigate = useNavigate();
   const [formData, handleInputChange, handleSubmit] = useCustomForm(initialValues, postUserInfo);
   const [email, setEmail] = useState();
-  //FOR MATERIALS PAGE
-  const [productTotal, setProductTotal] = useState(0)
 
   useEffect(() => {
     const fetchUserInfo = async () => {
@@ -1047,20 +1040,3 @@ const HomePage = () => {
 };
 
 export default HomePage;
-
-
-// for materials page:
-
-// const productsSummarizer = () => {
-//     const sum = products.reduce(
-//       (acc, currectProduct) => acc + currectProduct.price, 0 
-//     )
-//     setProductTotal(sum);
-//   } 
-
-//  console.log(products[0].price)
-//   console.log(products[1].price)
-
-    {/* <p>{products[0].price + products[1].price}</p>
-    <button onClick={ () => {productsSummarizer()}}>Click for total</button>
-    <p>{productTotal}</p>  */}
