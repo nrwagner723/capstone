@@ -1031,9 +1031,8 @@ const HomePage = () => {
   getEmail()
 
   return (
-      <div className="container">
+      <div className="home_container">
         <h1>Welcome {user.username}!</h1>
-        <h1>{email}</h1>
         <p className="quote">“Building is about getting around the obstacles that are presented to you.” – Jeremy Renner</p>
       </div>
   );

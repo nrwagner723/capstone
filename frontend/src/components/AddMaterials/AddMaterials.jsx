@@ -60,39 +60,43 @@ const AddMaterials = (props) => {
   };
 
   return (
-    <div className="container">
-      <button
-        onClick={() => {
-          materialsPrice();
-        }}
-      >
-        Click for total
-      </button>
-      <p>Total Price: ${productTotal}</p>
-      {props.userMaterials.map((userMaterial) => {
-        return (
-          <div className="user_materials_container">
-            <div className="user_materials">
-              <p className="user_materials_card">
-                {userMaterial.title} <br />
-                Price: ${userMaterial.price} <br />
-                Brand: {userMaterial.brand} <br />
-                Rating: {userMaterial.rating}/5 <br />
-                <a href={userMaterial.link} target="_blank">
-                  Link to Product's full page
-                </a>{" "}
-                <br />
-                <button
-                  className="delete"
-                  onClick={(e) => handleAlert(e, userMaterial.id)}
-                >
-                  Delete
-                </button>
-              </p>
+    <div>
+      <div className="container">
+        <button
+          className="total"
+          onClick={() => {
+            materialsPrice();
+          }}
+        >
+          Sum of materials
+        </button>
+        <p>Total Price: ${productTotal}</p>
+        <p>These products are your materials. Click the Search for materials button to add more! Refresh after adding a product to see it in your list</p>
+        {props.userMaterials.map((userMaterial) => {
+          return (
+            <div className="user_materials_container">
+              <div>
+                <p className="user_materials_card">
+                  {userMaterial.title} <br />
+                  Price: ${userMaterial.price} <br />
+                  Brand: {userMaterial.brand} <br />
+                  Rating: {userMaterial.rating}/5 <br />
+                  <a href={userMaterial.link} target="_blank">
+                    Link to Product's full page
+                  </a>{" "}
+                  <br />
+                  <button
+                    className="delete"
+                    onClick={(e) => handleAlert(e, userMaterial.id)}
+                  >
+                    Delete
+                  </button>
+                </p>
+              </div>
             </div>
-          </div>
-        );
-      })}
+          );
+        })}
+      </div>
       <br />
       <br />
       <br />
