@@ -1,0 +1,7 @@
+.reminder {
+    background-color: transparent;
+    border: 2px solid rgb(188, 79, 39);
+    color: rgb(188, 79, 39);
+    font-size: 1rem;
+    font-family: inherit;
+}

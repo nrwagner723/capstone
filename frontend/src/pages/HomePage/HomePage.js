@@ -5,8 +5,6 @@ import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 import useCustomForm from '../../hooks/useCustomForm';
 import "./HomePage.css";
-import "../../components/EmailJS/EmailJS";
-import EmailJS from "../../components/EmailJS/EmailJS";
 
 let initialValues = {
   phone_number: '',
@@ -1011,7 +1009,9 @@ const HomePage = () => {
   useEffect(() => {
     const fetchUserInfo = async () => {
       try {
-        let response = await axios.get("http://127.0.0.1:8000/user_info/");
+        let response = await axios.get("http://127.0.0.1:8000/user_info/", {
+            headers: { Authorization: "Bearer " + token },
+          });
         setUserInfo(response.data);
       } catch (error) {
         console.log(error.response.data);
@@ -1042,7 +1042,6 @@ const HomePage = () => {
         <h1>Welcome {user.username}!</h1>
         <h1>{email}</h1>
         <p className="quote">“Building is about getting around the obstacles that are presented to you.” – Jeremy Renner</p>
-        <EmailJS />
       </div>
   );
 };

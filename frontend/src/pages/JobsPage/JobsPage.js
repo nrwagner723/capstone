@@ -5,6 +5,8 @@ import Jobs from "../../components/AddJobs/Jobs";
 import "./JobsPage.css";
 import axios from "axios";
 // import useAuth from "../../hooks/useAuth";
+import "../../components/EmailJS/EmailJS";
+import EmailJS from "../../components/EmailJS/EmailJS";
 
 const JobsPage = (props) => {
   const [entries, setEntries] = useState([]);
@@ -30,6 +32,7 @@ const JobsPage = (props) => {
         </div>
         <div className="col-md-12">
           <div className="border-box">
+            <EmailJS />
             <DisplayEntries parentEntries={entries} setEntries={setEntries} />
           </div>
         </div>

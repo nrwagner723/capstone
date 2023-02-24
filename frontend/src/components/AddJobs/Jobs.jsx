@@ -54,7 +54,7 @@ const Jobs = (props) => {
           onChange={(event) => setEndDate(event.target.value)}
         />
       </div>
-      <button type="submit" style={{ "margin-top": "1em" }}>
+      <button type="submit" style={{ "margin-top": "1em", "margin-bottom": "1em" }}>
         Add Job
       </button>
     </form>
