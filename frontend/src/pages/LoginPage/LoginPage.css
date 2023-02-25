@@ -1,3 +1,8 @@
 .error {
   color: red;
 }
+
+.login_container {
+  display: flex;
+  flex-direction: column;
+}

@@ -58,9 +58,7 @@ const EmailJS = () => {
             console.log(error.text);
           }
         );
-    } else {
-      alert("You don't have a job tomorrow")
-    }
+    } 
   }
 
   async function getEmail() {
